@@ -25,18 +25,14 @@ try:
 except tweepy.TweepError as e:
     print(f"Error during Authentication: {e}")
 
-def post_quote():
-    try:
-        # Request a random quote from quotable API
-        url = "https://api.quotable.io/random"
-        response = requests.get(url)
-        
-        if response.status_code == 200:
-            res = response.json()
-            print(res)
-            # Post the quote to Twitter
-            api.update_status(res['content'])
-        else:
-            print(f"Error fetching quote. Status code: {response.status_code}")
-    except requests.exceptions.RequestException as e:
-        print(f"Request failed: {e}")
+# Fetching a random quote and posting it
+url = "https://api.quotable.io/random"
+response = requests.get(url)
+res = response.json()  # Parse JSON response directly
+print(f"Quote fetched: {res['content']}")
+
+try:
+    tweet = api.update_status(res['content'])
+    print(f"Successfully posted tweet: {tweet.text}")
+except tweepy.TweepError as e:
+    print(f"Error posting tweet: {e}")
