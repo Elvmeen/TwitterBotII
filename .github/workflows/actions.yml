@@ -2,7 +2,7 @@ name: Twitter Bot Scheduler
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Run the bot every hour at minute 0
+    - cron: '0 0 * * *'  # Run the bot every hour at minute 0
   workflow_dispatch:  # Allows manual trigger
 
 jobs:
