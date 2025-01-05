@@ -2,6 +2,14 @@ import os
 import tweepy
 import requests
 from dotenv import load_dotenv
+import certifi
+import urllib3
+
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+response = requests.get(url, verify=certifi.where())
+
 
 # Load environment variables from the system's environment (or .env for local testing)
 load_dotenv()
