@@ -27,7 +27,7 @@ except tweepy.TweepError as e:
 
 # Fetching a random quote and posting it
 url = "http://api.quotable.io/random"
-response = requests.get(url)
+response = requests.get(url, verify=False)
 res = response.json()  # Parse JSON response directly
 print(f"Quote fetched: {res['content']}")
 
